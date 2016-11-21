@@ -1,0 +1,15 @@
+PODS:
+  - SVProgressHUD (2.0.4)
+  - ZXUtilityCode (1.0.6.1)
+
+DEPENDENCIES:
+  - SVProgressHUD
+  - ZXUtilityCode
+
+SPEC CHECKSUMS:
+  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
+  ZXUtilityCode: c35b7fd28b070d7d06f0cf67bdd382cb879a1df2
+
+PODFILE CHECKSUM: bb4a321f85cd93fa5d2ef076b41185beaccacdfb
+
+COCOAPODS: 1.1.1
