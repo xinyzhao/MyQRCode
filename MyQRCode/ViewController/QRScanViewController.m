@@ -10,7 +10,7 @@
 #import "QRTextViewController.h"
 
 @interface QRScanViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightBarButtonItem;
+
 @end
 
 @implementation QRScanViewController
@@ -115,10 +115,10 @@
 - (IBAction)onLight:(id)sender {
     if (self.scanner.torchMode != AVCaptureTorchModeOn) {
         self.scanner.torchMode = AVCaptureTorchModeOn;
-        self.rightBarButtonItem.title = @"关灯";
+        self.navigationItem.rightBarButtonItem.title = @"关灯";
     } else {
         self.scanner.torchMode = AVCaptureTorchModeOff;
-        self.rightBarButtonItem.title = @"开灯";
+        self.navigationItem.rightBarButtonItem.title = @"开灯";
     }
 }
 

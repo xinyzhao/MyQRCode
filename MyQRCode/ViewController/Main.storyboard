@@ -192,13 +192,23 @@
                                         <rect key="frame" x="13.5" y="128.5" width="231" height="2"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCL-zP-G05">
+                                        <rect key="frame" x="0.0" y="0.0" width="259" height="259"/>
+                                        <connections>
+                                            <action selector="onLight:" destination="Ygr-sK-eqo" eventType="touchUpInside" id="LbT-uw-IP6"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="202-SH-PBS"/>
+                                    <constraint firstItem="sCL-zP-G05" firstAttribute="top" secondItem="WR8-GA-cJz" secondAttribute="top" id="4p5-Jl-YUM"/>
+                                    <constraint firstItem="sCL-zP-G05" firstAttribute="leading" secondItem="WR8-GA-cJz" secondAttribute="leading" id="5qt-KB-bZs"/>
+                                    <constraint firstAttribute="trailing" secondItem="sCL-zP-G05" secondAttribute="trailing" id="62V-sD-9NS"/>
                                     <constraint firstItem="1UJ-mc-6no" firstAttribute="leading" secondItem="WR8-GA-cJz" secondAttribute="leading" id="Dbr-OU-m9n"/>
                                     <constraint firstItem="1UJ-mc-6no" firstAttribute="top" secondItem="WR8-GA-cJz" secondAttribute="top" id="E9X-VL-wny"/>
                                     <constraint firstAttribute="trailing" secondItem="1UJ-mc-6no" secondAttribute="trailing" id="EFL-H1-jf0"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="259" id="JBZ-sI-x77"/>
+                                    <constraint firstAttribute="bottom" secondItem="sCL-zP-G05" secondAttribute="bottom" id="kP9-ZO-tdM"/>
                                     <constraint firstAttribute="bottom" secondItem="1UJ-mc-6no" secondAttribute="bottom" id="kfP-0a-Sk9"/>
                                     <constraint firstAttribute="height" constant="259" id="rjx-Bs-CVR"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="259" id="wS1-LV-YFo"/>
@@ -284,7 +294,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="rightBarButtonItem" destination="qai-W3-Fng" id="014-ah-kuU"/>
                         <outlet property="scanLine" destination="alb-sk-Tso" id="0PX-gD-1LI"/>
                         <outlet property="scanView" destination="WR8-GA-cJz" id="zvL-GV-aSg"/>
                         <segue destination="Jcq-rJ-oPX" kind="show" identifier="QRTextViewController" id="O7s-XN-3wP"/>
