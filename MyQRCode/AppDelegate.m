@@ -17,8 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setMinimumDismissTimeInterval:1.f];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
+    [SVProgressHUD setMinimumDismissTimeInterval:2.f];
     return YES;
 }
 

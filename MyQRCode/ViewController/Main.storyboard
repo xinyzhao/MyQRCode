@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0aO-7i-6Z3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0aO-7i-6Z3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -104,6 +104,11 @@
                                     <constraint firstAttribute="trailing" secondItem="cF6-VQ-K0m" secondAttribute="trailing" id="qiT-E1-rlT"/>
                                     <constraint firstItem="mOf-zj-Ffm" firstAttribute="top" secondItem="n9V-CO-c51" secondAttribute="top" id="sHP-Jf-iHO"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="copyrightLabel" destination="rS2-9F-x9b" id="EVm-4D-eIU"/>
+                                    <outlet property="homepageButton" destination="mOf-zj-Ffm" id="LVf-j0-KqX"/>
+                                    <outlet property="homepageLabel" destination="cF6-VQ-K0m" id="rJi-FK-xNL"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKw-xX-HQn">
                                 <rect key="frame" x="197.5" y="383.5" width="157.5" height="60"/>
@@ -259,6 +264,11 @@
                                     <constraint firstAttribute="trailing" secondItem="44d-1f-EWf" secondAttribute="trailing" id="uBd-T2-HIh"/>
                                     <constraint firstAttribute="height" constant="40" id="znY-W1-786"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="copyrightLabel" destination="44d-1f-EWf" id="QYw-2D-bvq"/>
+                                    <outlet property="homepageButton" destination="dgP-Uk-DVR" id="YDk-wo-lO6"/>
+                                    <outlet property="homepageLabel" destination="ky6-6I-Bgm" id="MpX-2q-21T"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -356,6 +366,11 @@
                                     <constraint firstItem="kaE-jo-P97" firstAttribute="leading" secondItem="Qjv-n6-LUk" secondAttribute="leading" id="na0-kb-sH0"/>
                                     <constraint firstAttribute="trailing" secondItem="974-gb-kAt" secondAttribute="trailing" id="yWh-O0-Nwk"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="copyrightLabel" destination="8MA-sN-8L5" id="RwJ-Ss-l9r"/>
+                                    <outlet property="homepageButton" destination="kaE-jo-P97" id="vRD-BW-cEs"/>
+                                    <outlet property="homepageLabel" destination="974-gb-kAt" id="aVC-wh-JSX"/>
+                                </connections>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8j-YB-Dup">
                                 <rect key="frame" x="20" y="84" width="335" height="503"/>
@@ -378,9 +393,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="扫描结果" id="0Cv-64-l3W">
-                        <barButtonItem key="rightBarButtonItem" title="复制" id="OfL-F3-7If">
+                        <barButtonItem key="rightBarButtonItem" title="历史记录" id="OfL-F3-7If">
                             <connections>
-                                <action selector="onCopy:" destination="Jcq-rJ-oPX" id="Iuw-NK-P75"/>
+                                <segue destination="oNO-KP-lU6" kind="show" id="8zb-YZ-ezs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -392,6 +407,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0YT-HB-nyH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1166" y="1082"/>
+        </scene>
+        <!--历史记录-->
+        <scene sceneID="6x9-px-wO4">
+            <objects>
+                <tableViewController storyboardIdentifier="QRListViewController" id="oNO-KP-lU6" customClass="QRListViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="05z-A9-yYJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="YSp-AZ-dkX">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YSp-AZ-dkX" id="dIR-kv-LJ6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oNO-KP-lU6" id="n8e-Wl-APr"/>
+                            <outlet property="delegate" destination="oNO-KP-lU6" id="wWL-lh-5Q2"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="历史记录" id="TI2-S1-MNU">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="清空" id="paB-zZ-fJ9">
+                            <connections>
+                                <action selector="onCleanup:" destination="oNO-KP-lU6" id="YeA-0Q-3oi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="rightItem" destination="paB-zZ-fJ9" id="c8C-0b-4nM"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PXq-z1-lMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2025" y="1081"/>
         </scene>
         <!--生成二维码-->
         <scene sceneID="JqC-lz-ERO">
@@ -419,7 +474,7 @@
                                     <constraint firstAttribute="height" constant="260" id="yj0-c5-Hd5"/>
                                 </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="SzC-Mo-vWB" appends="YES" id="8hS-vZ-Ur7"/>
+                                    <outletCollection property="gestureRecognizers" destination="SzC-Mo-vWB" appends="YES" id="wQ7-o7-D3Q"/>
                                 </connections>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-Tw-Zww" customClass="QRCopyrightView">
@@ -463,6 +518,11 @@
                                     <constraint firstItem="I1z-A8-nUK" firstAttribute="leading" secondItem="bfN-Tw-Zww" secondAttribute="leading" id="jgO-yy-7do"/>
                                     <constraint firstAttribute="bottom" secondItem="jUa-Xb-zFw" secondAttribute="bottom" id="v9v-oj-p0h"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="copyrightLabel" destination="8dQ-tG-63S" id="u6A-ZV-GrM"/>
+                                    <outlet property="homepageButton" destination="jUa-Xb-zFw" id="X4I-B5-Naf"/>
+                                    <outlet property="homepageLabel" destination="I1z-A8-nUK" id="VR0-sW-ufv"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -479,7 +539,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="生成二维码" id="3xv-Ru-fWr">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="1lq-70-t2G">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="1lq-70-t2G">
                             <connections>
                                 <action selector="onSaveImage:" destination="rtc-hE-Uha" id="2Xn-9l-BfZ"/>
                             </connections>
@@ -496,9 +556,9 @@
                         <action selector="onBackColor:" destination="rtc-hE-Uha" id="kiy-jr-Ktw"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="SzC-Mo-vWB" userLabel="onTintColor">
+                <tapGestureRecognizer id="SzC-Mo-vWB" userLabel="onFillColor">
                     <connections>
-                        <action selector="onTintColor:" destination="rtc-hE-Uha" id="BLk-fS-JDv"/>
+                        <action selector="onFillColor:" destination="rtc-hE-Uha" id="3ZM-KM-DKy"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

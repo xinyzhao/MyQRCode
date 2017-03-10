@@ -9,7 +9,7 @@
 #import "QRCodeViewController.h"
 #import "ZXColorPickerController.h"
 
-@interface QRCodeViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
+@interface QRCodeViewController ()
 @property (nonatomic, strong) NSString *originalText;
 @property (nonatomic, strong) UIImage *originalImage;
 @property (nonatomic, copy) UIColor *tintColor;
@@ -61,18 +61,31 @@
 
 #pragma mark Actions
 
-- (IBAction)onAction:(id)sender {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"保存到相册" otherButtonTitles:@"更改填充色", @"更改背景色", nil];
-    [sheet showInView:self.view];
-}
-
 - (IBAction)onSaveImage:(id)sender {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存到相册" message:@"请输入要保存二维码图像的尺寸" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"保存", nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    textField.keyboardType = UIKeyboardTypeNumberPad;
-    textField.text = [NSString stringWithFormat:@"%.f", self.originalImage.size.width];
-    [alertView show];
+    __weak typeof(self) weakSelf = self;
+    //
+    __block ZXAlertView *alertView = nil;
+    ZXAlertAction *cancelAction = [ZXAlertAction actionWithTitle:@"取消" handler:nil];
+    ZXAlertAction *saveAction = [ZXAlertAction actionWithTitle:@"保存" handler:^(ZXAlertAction *action) {
+        CGFloat width = [alertView.textFields[0].text floatValue];
+        if (width < 1.f) {
+            [SVProgressHUD showErrorWithStatus:@"输入的尺寸无效，请重试！"];
+        } else if (width < weakSelf.originalImage.size.width) {
+            ZXAlertView *alertView = [[ZXAlertView alloc] initWithTitle:@"警告" message:@"输入的尺寸小于二维码原始尺寸，这将造成信息丢失，确认保存？" cancelAction:[ZXAlertAction actionWithTitle:@"取消" handler:nil] otherActions:[ZXAlertAction actionWithTitle:@"保存" handler:^(ZXAlertAction *action) {
+                [weakSelf saveImageWithSize:CGSizeMake(width, width)];
+            }], nil];
+            [alertView showInViewController:weakSelf];
+        } else {
+            [weakSelf saveImageWithSize:CGSizeMake(width, width)];
+        }
+    }];
+    //
+    alertView = [[ZXAlertView alloc] initWithTitle:@"保存到相册" message:@"请输入要保存二维码图像的尺寸" cancelAction:cancelAction otherActions:saveAction, nil];
+    [alertView addTextField:^(UITextField *textField) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+        textField.text = [NSString stringWithFormat:@"%.f", weakSelf.originalImage.size.width];
+    }];
+    [alertView showInViewController:self];
 }
 
 - (IBAction)onBackColor:(id)sender {
@@ -86,7 +99,7 @@
     };
 }
 
-- (IBAction)onTintColor:(id)sender {
+- (IBAction)onFillColor:(id)sender {
     ZXColorPickerController *vc = [[ZXColorPickerController alloc] init];
     vc.currentColor = self.tintColor;
     [self.navigationController pushViewController:vc animated:YES];
@@ -95,28 +108,6 @@
     vc.completionBlock = ^(UIColor *color) {
         weakSelf.tintColor = color;
     };
-}
-
-#pragma mark <UIAlertViewDelegate>
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 0) {
-        if (buttonIndex == 1) {
-            CGFloat width = [[alertView textFieldAtIndex:0].text floatValue];
-            if (width < 1.f) {
-                [SVProgressHUD showErrorWithStatus:@"输入的尺寸无效，请重试！"];
-            } else if (width < self.originalImage.size.width) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"警告" message:@"输入的尺寸小于二维码原始尺寸，这将造成信息丢失，确认保存？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"保存", nil];
-                alertView.tag = width;
-                [alertView show];
-            } else {
-                [self saveImageWithSize:CGSizeMake(width, width)];
-            }
-        }
-    } else if (buttonIndex == 1) {
-        CGFloat width = alertView.tag;
-        [self saveImageWithSize:CGSizeMake(width, width)];
-    }
 }
 
 #pragma mark Save Image

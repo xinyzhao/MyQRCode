@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface QRCopyrightView : UIView
+@property (nonatomic, weak) IBOutlet UILabel *copyrightLabel;
+@property (nonatomic, weak) IBOutlet UILabel *homepageLabel;
+@property (nonatomic, weak) IBOutlet UIButton *homepageButton;
 
 @end

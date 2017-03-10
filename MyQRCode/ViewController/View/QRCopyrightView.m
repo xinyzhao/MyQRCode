@@ -10,13 +10,11 @@
 
 @implementation QRCopyrightView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.copyrightLabel.text = @"Copyright (c) 2016-2017 by XYZ.";
+    self.homepageLabel.text = @"https://www.github.com/xinyzhao";
 }
-*/
 
 - (IBAction)onCopyright:(id)sender {
     NSURL *url = [NSURL URLWithString:MyQRCodeURL];
