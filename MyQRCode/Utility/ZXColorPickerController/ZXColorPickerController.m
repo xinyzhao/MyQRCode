@@ -141,12 +141,12 @@
 }
 
 - (void)setHEXColor:(UIColor *)color {
-    _hexCell.textField.text = color.hexString;
+    _hexCell.textField.text = color.stringValue;
     _hexCell.imageView.backgroundColor = color;
 }
 
 - (UIColor *)hexColor {
-    UIColor *color = [UIColor colorWithHexString:self.hexCell.textField.text];
+    UIColor *color = [UIColor colorWithString:self.hexCell.textField.text];
     return [color colorWithAlphaComponent:self.opacity];
 }
 
